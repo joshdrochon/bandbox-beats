@@ -1,0 +1,10 @@
+<h2>Marketplace</h2>
+
+<p>Albums</p>
+
+<div *ngFor="let album of albums" (click)="toAlbumDetails(album)" class="panel panel-default">
+  <div class="panel-body">
+    <span id="title-artist"><h3><em>{{album.title}}</em> by {{album.artist}}</h3></span>
+    <hr>
+  </div>
+</div>
