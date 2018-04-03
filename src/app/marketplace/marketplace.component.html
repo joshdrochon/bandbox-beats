@@ -2,9 +2,16 @@
 
 <p>Albums</p>
 
-<div *ngFor="let album of albums | async" (click)="toAlbumDetails(album)" class="panel panel-default">
+<div *ngFor="let album of albums | async" class="panel panel-default">
   <div class="panel-body">
-    <span id="title-artist"><h3><em>{{album.title}}</em> by {{album.artist}}</h3></span>
+    <span (click)="toAlbumDetails(album)"  id="title-artist"><h3><em>{{album.title}}</em> by {{album.artist}}</h3></span>
+    <div *ngIf="currentRoute === '/admin'">
+      {{album.description}}
+      <hr>
+      <app-edit-album [selectedAlbum]="album"></app-edit-album>
+    </div>
     <hr>
   </div>
 </div>
+
+<!--each component has a router object. Therefore to determine a components URL we can call router.url, which can set equal to a variable. In the *ngIf directive, we basically say, if it evualtes to true that the URL is /admin, then show the list of albums, and in addition each albums description and the app-edit-album template.-->

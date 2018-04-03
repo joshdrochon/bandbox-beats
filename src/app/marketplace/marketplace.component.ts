@@ -14,6 +14,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
 export class MarketplaceComponent implements OnInit {
 
   albums: FirebaseListObservable<any[]>;
+  currentRoute: string = this.router.url;
 
   //typescript automatically creates a property behind the scenes ie MarketplaceComponent.router
   constructor(private router: Router, private albumService: AlbumService){}
@@ -22,7 +23,7 @@ export class MarketplaceComponent implements OnInit {
     this.albums = this.albumService.getAlbums();
   }
 
-  toAlbumDetails(clickedAlbum: Album){
-    this.router.navigate(['albums', clickedAlbum.id]);
+  toAlbumDetails(clickedAlbum){
+    this.router.navigate(['albums', clickedAlbum.$key]);
   };
 }
